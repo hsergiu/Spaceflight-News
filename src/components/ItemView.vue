@@ -59,6 +59,9 @@ export default {
 .news-view
   padding-left 5px
   padding-right 15px
+  border-style solid
+  border-width thin
+  color midnightblue
 
   &.loading:before
     content "Loading..."

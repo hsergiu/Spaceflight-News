@@ -4,7 +4,6 @@
   <div id="wrapper">
     <!-- header -->
     <div id="header">
-      <img id="yc" src="https://i.ibb.co/pWhvXq4/shuttle.png">
       <h1><a href="#/events">Spaceflight News</a></h1>
     </div>
     <!-- main view -->
@@ -56,15 +55,20 @@ a
 
 #header
   background-color #333366
-  height 24px
+  height 30px
   position relative
+  background-image url('/static/space.jpg')
+  background-size cover
+  background-position center
 
   h1
     font-weight bold
-    font-size 13px
+    font-size 20px
+    font-family Tahoma
     display inline-block
     vertical-align middle
-    margin 0
+    margin auto
+    padding-left 15px
 
   .source
     color #fff
@@ -78,15 +82,6 @@ a
 
       &:hover
         text-decoration underline
-
-#yc
-  border 1px solid #fff
-  margin 2px
-  display inline-block
-  vertical-align middle
-
-  img
-    vertical-align middle
 
 .view
   position absolute
