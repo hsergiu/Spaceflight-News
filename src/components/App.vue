@@ -20,8 +20,6 @@
 <style lang="stylus">
 
 html, body
-  font-family Verdana
-  font-size 13px
   height 100%
 
 ul
@@ -55,7 +53,7 @@ a
 
 #header
   background-color #333366
-  height 30px
+  height 35px
   position relative
   background-image url('/static/space.jpg')
   background-size cover
@@ -63,7 +61,7 @@ a
 
   h1
     font-weight bold
-    font-size 20px
+    font-size x-large
     font-family Tahoma
     display inline-block
     vertical-align middle

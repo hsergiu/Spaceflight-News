@@ -1,6 +1,5 @@
 <template>
   <div class="item">
-    <span class="index">{{index}}.</span>
     <p>
       <a class="title" target="_blank" :href="'#/details/' + item.id">{{item.title}}</a>
       <a class="domain" :href="href" v-show="showDomain">
@@ -44,20 +43,18 @@ export default {
 <style scoped lang="stylus">
 
 .item
-  padding 2px 0 2px 40px
+  padding 10px 10px 10px 15px
   position relative
   transition background-color .2s ease
+  border-style solid
+  border-width thin
+  font-size medium
+  font-family Verdana
+  color #333333
   p
     margin 2px 0
   .title:visited
       color #828282
-  .index
-    color #828282
-    position absolute
-    width 30px
-    text-align right
-    left 0
-    top 4px
   .domain, .subtext
     font-size 11px
     color #828282
