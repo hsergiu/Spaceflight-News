@@ -4,9 +4,7 @@
   "description": "News app about space missions",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --no-info",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "postinstall": "yarn run build",
-    "start": "node server.js"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "devDependencies": {
     "axios": "^0.21.1",
@@ -44,7 +42,6 @@
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0",
     "es6-promise": "^3.0.2",
-    "express": "^4.17.1",
     "file-loader": "^6.2.0",
     "url-loader": "^4.1.1",
     "vue": "^1.0.26",
