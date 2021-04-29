@@ -1,10 +1,16 @@
 {
   "name": "news",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "News app about space missions",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --no-info",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hsergiu/Sp-News.git"
   },
   "devDependencies": {
     "axios": "^0.21.1",
@@ -33,18 +39,19 @@
     "babel-runtime": "^6.0.0",
     "cross-env": "^2.0.1",
     "css-loader": "^0.24.0",
+    "es6-promise": "^3.0.2",
+    "express": "^4.17.1",
+    "file-loader": "^6.2.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.1.1",
+    "url-loader": "^4.1.1",
+    "vue": "^1.0.26",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.0.0",
+    "vue-router": "^0.7.13",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.0",
-    "es6-promise": "^3.0.2",
-    "file-loader": "^6.2.0",
-    "url-loader": "^4.1.1",
-    "vue": "^1.0.26",
-    "vue-router": "^0.7.13"
+    "webpack-dev-server": "^1.12.0"
   }
 }
