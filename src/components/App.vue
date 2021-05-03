@@ -46,6 +46,7 @@ a
   height 100%
 
 #wrapper
+  opacity 99.5
   background-color #000
   position relative
   width 80%
