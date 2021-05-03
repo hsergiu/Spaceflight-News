@@ -7,6 +7,16 @@ module.exports = {
     publicPath: '/',
     filename: 'build.js'
   },
+  devServer: {
+    disableHostCheck: true,
+    clientLogLevel: 'warning',
+    historyApiFallback: true,
+    host: '0.0.0.0',
+    port: process.env.PORT || 8080,
+    open: false,
+    overlay: false,
+    quiet: true
+  },
   module: {
     // avoid webpack trying to shim process
     noParse: /es6-promise\.js$/,
