@@ -4,9 +4,7 @@
   "description": "News app about space missions",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --no-info",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "start": "webpack-dev-server --host 0.0.0.0 --config webpack.config.js",
-    "heroku-postbuild": "webpack-dev-server --config webpack.config.js"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",

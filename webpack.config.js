@@ -3,19 +3,9 @@ var webpack = require('webpack')
 module.exports = {
   entry: './src/main.js',
   output: {
-    path: __dirname,
-    publicPath: '/',
+    path: './static',
+    publicPath: '/static/',
     filename: 'build.js'
-  },
-  devServer: {
-    disableHostCheck: true,
-    clientLogLevel: 'warning',
-    historyApiFallback: true,
-    host: '0.0.0.0',
-    port: process.env.PORT || 8080,
-    open: false,
-    overlay: false,
-    quiet: true
   },
   module: {
     // avoid webpack trying to shim process
