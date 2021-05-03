@@ -20,6 +20,8 @@
 <style lang="stylus">
 
 html, body
+  font-family Verdana
+  font-size 13px
   height 100%
 
 ul
