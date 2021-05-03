@@ -57,7 +57,7 @@ a
   background-color #333366
   height 35px
   position relative
-  background-image url('/static/space.jpg')
+  background-image url('https://hsergiu.github.io/Sp-News/static/space.jpg')
   background-size cover
   background-position center
 
