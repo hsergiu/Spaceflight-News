@@ -3,14 +3,14 @@
     <p>
       <a class="title" target="_blank" :href="'#/details/' + item.id">{{item.title}}</a>
       <a class="domain" :href="href" v-show="showDomain">
-        ({{item.newsSite}})
+        ({{item.news_site}})
       </a>
     </p>
     <p class="subtext">
-        Published: {{item.publishedAt| fromNow}}
+        Published: {{item.published_at| fromNow}}
       <span v-show="showUpdated">
         <br>
-        Updated: {{item.updatedAt| fromNow}}
+        Updated: {{item.updated_at| fromNow}}
       </span>
     </p>
   </div>

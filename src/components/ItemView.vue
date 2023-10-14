@@ -47,9 +47,9 @@ export default {
     data({to}) {
       document.title = 'News'
       this.start = +to.params.start
-      return fetchMoreEvents(to.params.start, this.count).then(items => ({
-        items
-      }))
+      return fetchMoreEvents(to.params.start, this.count).then(items => 
+        this.items = items
+      )
     }
   },
 }

@@ -8,17 +8,17 @@ const endpoint = {
 
 const fetchEvents = count => {
   return axios
-      .get(endpoint.events + '?_limit=' + count)
+      .get(endpoint.events + '?limit=' + count)
       .then((response) => {
-        return response.data;
+        return response.data.results;
       });
 }
 
 const fetchMoreEvents = (start, count) => {
   return axios
-      .get(endpoint.events + '?_limit=' + count + '&_start=' + start)
+      .get(endpoint.events + '?limit=' + count + '&offset=' + start)
       .then((response) => {
-        return response.data;
+        return response.data.results;
       });
 }
 const fetchEvent = id => {
