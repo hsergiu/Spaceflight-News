@@ -3,8 +3,7 @@ import Vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
   build: {
-    base: 'dist',
-    outDir: 'dist',
+    outDir: 'docs',
     rollupOptions: {
       output: {
         entryFileNames: 'build.js',
