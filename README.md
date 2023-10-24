@@ -1,6 +1,6 @@
 # News app for spaceflights
-Spaceflight news app built with Vue and vue-router.
-The build setup uses Webpack.
+Spaceflight news app built with Vue 3 and vue-router 4.
+The build setup uses Vite 4.
 
 
 [Test the app](https://hsergiu.github.io/Sp-News)

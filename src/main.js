@@ -1,36 +1,38 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import { domain, fromNow } from './filters'
 import App from './components/App.vue'
+
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import ItemView from './components/ItemView.vue'
 import DetailsView from './components/DetailsView.vue'
 
-// install router
-Vue.use(Router)
+const app = createApp(App)
 
-// register filters globally
-Vue.filter('fromNow', fromNow)
-Vue.filter('domain', domain)
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/events/:start',
+      name: 'events',
+      component: ItemView
+    },
+    {
+      path: '/details/:id',
+      name: 'details',
+      component: DetailsView
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/events/0'
+    }
+  ]
+});
 
-// routing
-var router = new Router()
-
-router.map({
-  '/events/:start':{
-    component: ItemView
-  },
-  '/details/:id':{
-    component: DetailsView
-  }
-})
-
-router.beforeEach(function () {
+router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0)
-})
+  next()
+});
 
-router.redirect({
-  '*': '/events/0'
-})
+app.use(router)
 
-router.start(App, '#app')
+app.mount('#app')

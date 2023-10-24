@@ -1,24 +1,43 @@
 <template>
-  <div class="news-view" :class="{ loading: !items.length }">
-    <!-- item list -->
-    <item
-        v-for="item in items"
+  <div class="news-view">
+    <input v-model="searchInput" @change="onChange" class="search" type="text" placeholder="Search...">
+    <div>
+      <p class="loading" v-if="isLoading"></p>
+      <p class="error" v-if="error">{{ error }}</p>
+      <!-- item list -->
+      <item
+        v-for="(item, index) in items"
         :item="item"
-        :index="$index | formatItemIndex"
-        track-by=$index>
-    </item>
-    <!-- navigation -->
-    <div class="nav" v-show="items.length > 0">
-      <a v-if="start >= count" :href="'#/events/' + (start - count)">&lt; prev</a>
-      <a :href="'#/events/' + (start + count)">more &gt;</a>
+        :index="formatItemIndex(index)"
+        :key="item.id"
+      >
+      </item>
+      <!-- navigation -->
+      <div class="nav" v-show="items.length > 0">
+        <router-link
+          v-if="start >= pageCount"
+          :to="{ name: 'events', params: { start: (start - pageCount) } }"
+        >
+          &lt; prev
+        </router-link>
+        <router-link
+          v-if="items.length >= pageCount"
+          :to="{ name: 'events', params: { start: (start + pageCount) } }"
+        >
+          more &gt;
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
 
+
 <script>
 import Item from './Item.vue'
 
-import {fetchEvents, fetchMoreEvents} from '../api/events-api'
+import { fetchMoreEvents} from '../api/events-api'
+import { ref, onMounted } from 'vue'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 
 export default {
 
@@ -28,47 +47,91 @@ export default {
     Item
   },
 
-  filters: {
-    formatItemIndex(index) {
-      return this.start + index + 1
-    }
-  },
+  setup() {
+    const items = ref([])
+    const isLoading = ref(true)
+    const error = ref(null)
+    const searchInput = ref(null)
+    const page = ref(1)
+    const pageCount = ref(50)
+    const start = ref(0)
+    const route = useRoute()
 
-  data() {
-    return {
-      items: {},
-      page: 1,
-      count: 50,
-      start: 0
+    const formatItemIndex = (index) => {
+      return start.value + index + 1
     }
-  },
 
-  route: {
-    data({to}) {
+    const onChange = () => {
+      isLoading.value = true
+      fetchMoreEvents(start.value, pageCount.value, searchInput.value)
+        .then((fetchedItems) => {
+          items.value = fetchedItems
+        })
+        .catch((err) => {
+          error.value = err
+        })
+        .finally(() => {
+          isLoading.value = false
+        })
+    }
+
+    const fetchData = (newRoute) => {
       document.title = 'News'
-      this.start = +to.params.start
-      return fetchMoreEvents(to.params.start, this.count).then(items => 
-        this.items = items
-      )
+      start.value = newRoute ? +newRoute?.params.start : +route.params.start
+
+      return fetchMoreEvents(start.value, pageCount.value, searchInput.value)
+        .then((fetchedItems) => {
+          items.value = fetchedItems
+        })
+        .catch((err) => {
+          error.value = err
+        })
+        .finally(() => {
+          isLoading.value = false
+        })
     }
-  },
+
+    onMounted(() => {
+      fetchData()
+    })
+
+    onBeforeRouteUpdate((newRoute) => {
+      fetchData(newRoute)
+    })
+
+    return {
+      items,
+      isLoading,
+      error,
+      searchInput,
+      page,
+      pageCount,
+      start,
+      formatItemIndex,
+      onChange
+    }
+  }
 }
 </script>
 
 <style scoped lang="stylus">
+.search
+  width 100%
+  display block
+  box-sizing border-box
+  font-size medium
 .news-view
-  padding 0
-
-  &.loading:before
+  .loading:before
     content "Loading..."
     position absolute
-    top 16px
-    left 20px
+
+  .error:before
+    position absolute
 
   .nav
     padding 10px 10px 10px 40px
     margin-top 10px
-    border-top 2px solid #333360
+    border-top 2px solid #181a1b
 
     a
       margin-right 10px

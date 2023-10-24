@@ -1,34 +1,38 @@
 <template>
   <div class="details">
     <!-- item details -->
-    {{item.summary}}
+    {{ item.summary }}
     <br>
   </div>
 </template>
 
 <script>
-import {fetchEvent} from '../api/events-api'
+import { ref, onMounted } from 'vue';
+import { fetchEvent } from '../api/events-api'
+import { useRoute } from 'vue-router';
 
 export default {
   name: "DetailsView",
 
-  data () {
+  setup() {
+    const item = ref({})
+    const route = useRoute()
+
+    onMounted(async () => {
+      const { id } = route.params;
+      const fetchedItem = await fetchEvent(id);
+
+      // Set the page title
+      document.title = fetchedItem.title + ' | News';
+
+      // Update the 'item' data
+      item.value = fetchedItem;
+    });
+
     return {
-      item: {}
-    }
-  },
-
-  route: {
-    data ({ to }) {
-      return fetchEvent(to.params.id).then(item => {
-        document.title = item.title + ' | News'
-        return {
-          item
-        }
-      })
-    }
-  },
-
+      item,
+    };
+  }
 }
 </script>
 

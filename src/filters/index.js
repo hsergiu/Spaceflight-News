@@ -1,10 +1,3 @@
-const urlParser = document.createElement('a')
-
-export function domain(url) {
-  urlParser.href = url
-  return urlParser.hostname
-}
-
 export function fromNow(time) {
   const between = Math.abs((Date.now() - Date.parse(time)) / 1000)
 
