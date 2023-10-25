@@ -4,7 +4,7 @@
   <div id="wrapper">
     <!-- header -->
     <div id="header">
-      <a href="/events"><img src="/spaceflight-news.png"/></a>
+      <router-link :to="'/'"><img src="/spaceflight-news.png"/></router-link>
     </div>
     <!-- main view -->
     <router-view

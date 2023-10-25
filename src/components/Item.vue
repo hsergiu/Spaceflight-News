@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <p>
-      <a class="title" target="_blank" :href="'/details/' + item.id">{{item.title}}</a>
+      <router-link :to="'/details/' + item.id" class="title" target="_blank">{{item.title}}</router-link>
       <a class="domain" :href="href" v-show="showDomain">
         ({{ item.news_site }})
       </a>
