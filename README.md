@@ -16,4 +16,4 @@ To install the dependencies.
 To run the app in development mode.
 
 ### `npm run build`
-To build the app.
+To build the app for deployment. Used to generate docs folder for github pages build flow.
