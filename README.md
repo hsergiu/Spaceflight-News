@@ -6,7 +6,7 @@ The build setup uses Vite 4.
 [Test the app](https://hsergiu.github.io/Sp-News)
 
 
-Uses the [Spaceflight News API](https://www.spaceflightnewsapi.net/).
+Uses the [Spaceflight News API](https://www.spaceflightnewsapi.net/) (v4).
 ## Building
 
 ### `npm install`

@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <p>
+    <p @mouseover="hovered = true" @mouseleave="hovered = false" @click="clicked = !clicked">
       <router-link :to="'/details/' + item.id" class="title" target="_blank">{{item.title}}</router-link>
       <a class="domain" :href="href" v-show="showDomain">
         ({{ item.news_site }})
