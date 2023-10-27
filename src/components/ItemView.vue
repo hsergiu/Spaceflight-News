@@ -16,13 +16,13 @@
       <div class="nav" v-show="items.length > 0">
         <router-link
           v-if="start >= pageCount"
-          :to="{ name: 'events', params: { start: (start - pageCount) } }"
+          :to="{ name: 'events', params: { start: (start - pageCount) }, query: { ...$route.query } }"
         >
           &lt; prev
         </router-link>
         <router-link
           v-if="items.length >= pageCount"
-          :to="{ name: 'events', params: { start: (start + pageCount) } }"
+          :to="{ name: 'events', params: { start: (start + pageCount) }, query: { ...$route.query } }"
         >
           more &gt;
         </router-link>
@@ -37,7 +37,7 @@ import Item from './Item.vue'
 
 import { fetchMoreEvents} from '../api/events-api'
 import { ref, onMounted } from 'vue'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 
 export default {
 
@@ -56,6 +56,7 @@ export default {
     const pageCount = ref(50)
     const start = ref(0)
     const route = useRoute()
+    const router = useRouter()
 
     const formatItemIndex = (index) => {
       return start.value + index + 1
@@ -63,21 +64,13 @@ export default {
 
     const onChange = () => {
       isLoading.value = true
-      fetchMoreEvents(start.value, pageCount.value, searchInput.value)
-        .then((fetchedItems) => {
-          items.value = fetchedItems
-        })
-        .catch((err) => {
-          error.value = err
-        })
-        .finally(() => {
-          isLoading.value = false
-        })
+      router.push({ path: '/search', query: { search: searchInput.value } });
     }
 
     const fetchData = (newRoute) => {
       document.title = 'News'
       start.value = newRoute ? +newRoute?.params.start : +route.params.start
+      searchInput.value = newRoute ? newRoute?.query.search : route.query.search
 
       return fetchMoreEvents(start.value, pageCount.value, searchInput.value)
         .then((fetchedItems) => {

@@ -39,6 +39,8 @@ a
   top 0
   left 0
   width 100%
+  height 100%
+  object-fit cover
 
 #wrapper
   opacity 99.5
