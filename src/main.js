@@ -9,7 +9,7 @@ import DetailsView from './components/DetailsView.vue'
 const app = createApp(App)
 
 const router = createRouter({
-  history: createWebHashHistory('/Sp-News/'),
+  history: createWebHashHistory('/Spaceflight-News/'),
   routes: [
     {
       path: '/events/:start',

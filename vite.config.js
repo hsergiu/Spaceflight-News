@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  base: '/Sp-News',
+  base: '/Spaceflight-News',
   build: {
     outDir: 'docs',
     rollupOptions: {
