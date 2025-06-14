@@ -2,10 +2,6 @@
 Spaceflight news app built with Vue 3 and vue-router 4.
 The build setup uses Vite 4.
 
-
-[Test the app](https://hsergiu.github.io/Spaceflight-News)
-
-
 Uses the [Spaceflight News API](https://www.spaceflightnewsapi.net/) (v4).
 ## Building
 
